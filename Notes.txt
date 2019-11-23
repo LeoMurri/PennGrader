@@ -1,0 +1,24 @@
+Notes.txt
+
+
+PennGrader 
+
+CLIENT and MOCK
+grade - checks size
+view_hw_grade
+
+UPLOAD Lambda
+
+GRADE Lambda
+
+
+PennGrader Website
+
+LOGIN/SIGNUP - input homework_key and secret key or create new homework button
+
+Upload
+
+View
+-analysis per test case
+-download csv with everyones score
+-edit test cases 
