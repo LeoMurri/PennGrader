@@ -3,6 +3,20 @@
 AWS Username:
 AWS Password: xuhFxwmGYGutqYBWKBKh
 
+
+
+## Dynamo Tables
+Homeworks: Cotains mapping from HOMEWORK_ID to SECRET_KEY
+
+## Validate Credentials
+Lambda function that takes in HOMEWORK_ID and SECRET_KEY and returns on 200 if pair matches the one in `Homeworks` Dynamo table.
+
+
+
+
+
+
+
 ## What we believe.
 PennGrader was built because we believe learning comes from practice and from making mistakes. We believe that for any skill to be truly mastered one must practice a lot and the key to practice is feedback, at the end of the day that is how humans learn. The issue that we have with the normal, write your code, submit it and wait 2-3 weeks (sometimes 5-6 if the TAs are slacking) is that it does not allow for quick feedback and that we believe is key to fast learning. The PennGrader was built to allow students to get instant feedback in a truly seemless experience. It was made for Jupyter Notebooks in mind but can be outfitted into a non-Jupyter python grading script. We want to be able to tell students if they did it write or wrong right away. I heard a lot of people saying "oh the students knowing if they are getting it correct or not are just going to keep trying until they get it right" as a counterargument for this approach. And let me tell you, I think that is exactly the best argument to be made for this approach of grading. A motivated student will be able to realize he is doing something wrong and then go back study more, practice more, learn more and figure out how to fix it. If a student writes an answer and has no way of checking if it is correct or not it and say is compleltely wrong, that learning opportunity is just going to go to waste. The students will realize a few weeks down the road when he gets the grade back that he did it wrong, but by then he will have 100 more assignemtns and most likely have forgetten what that question was even about. PennGrader wants to give students the opportuntiy to learn from their mistakes and helped them figure out what needs to be studied and learned. And while we are at it, we wanted to make the most seemless grading user experience grading that there is ever been (for students and even more for TAs). 
 
