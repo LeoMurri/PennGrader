@@ -15,7 +15,9 @@ Here is what a student sees in his Homework Notebook. All a student has to do is
 
 Through the magic of AWS Lambdas the studen't answer (in this case the addition_function object) is passed to the backend where it is checked against the teacher defined test cases and a score is returned. If the student does not pass the test case, she can then go back to her code, learn what she did wrong, fix it and re-submit it. (I know what you are thinking, and yes, you can set a maximum number of daily submissions if you want to incentivize students to start early)
 
-Ok, ok, you might be saying to your self "That looks easy enough, but what about us TAs, we want something that simple too!". Well, look no further. The TAs/Instructors expereince is just as seemless. All TAs will share a _TeacherBackend_ notebook, which contains all the test case functions. The logic how testing is done is simple, whatever Python object gets passed through the _answer_ field in the _grade_ function (see above) will be the input to the a test case function (see below).
+Ok, ok, you might be saying to your self "That looks easy enough, but what about us TAs, we want something that simple too!". Well, look no further. The TAs/Instructors expereince is just as seemless. All TAs will share a _TeacherBackend_ notebook, which contains all the test case functions. The logic how testing is done is simple, whatever Python object gets passed through the _answer_ field in the _grade_ function (see above) will be the input to the a test case function (see below). In the above case a function object is getting passed as the answer to a test case named "test_case_1". Thus, the TAs will need to write a "test_case_1(answer)" test case as follows:
+
+![Sample Question](https://penngrader-wiki.s3.amazonaws.com/sample_test_case.gif)
 
 
 
