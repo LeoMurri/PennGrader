@@ -11,11 +11,13 @@ The PennGrader was built to allow students to get instant feedback and many oppo
 
 Here is what a student sees in his Homework Notebook. All a student has to do is write her solution and run the autograding cell.
 
-![Sample Question](https://penngrader-wiki.s3.amazonaws.com/sample_question.gif)
+![Sample Question](https://penngrader-wiki.s3.amazonaws.com/sample_submission.gif)
 
 Through the magic of AWS Lambdas the studen't answer (in this case the addition_function object) is passed to the backend where it is checked against the teacher defined test cases and a score is returned. If the student does not pass the test case, she can then go back to her code, learn what she did wrong, fix it and re-submit it. (I know what you are thinking, and yes, you can set a maximum number of daily submissions if you want to incentivize students to start early)
 
-Ok, ok, you might be saying to your self "That looks easy enough, but what about us TAs, we want something that simple too!". Well, look no further. All TAs/Instructors will share a _TeacherBackend_ notebook, which contains all the test case functions. The logical is simple, whatever Python object gets passed through the _answer_ field in the _grade_ function will be the input to the a test case function. Below is the test case for the above question:
+Ok, ok, you might be saying to your self "That looks easy enough, but what about us TAs, we want something that simple too!". Well, look no further. The TAs/Instructors expereince is just as seemless. All TAs will share a _TeacherBackend_ notebook, which contains all the test case functions. The logic how testing is done is simple, whatever Python object gets passed through the _answer_ field in the _grade_ function (see above) will be the input to the a test case function (see below).
+
+
 
 
 
