@@ -19,6 +19,7 @@ STUDENT_GRADE_REQUEST = 'STUDENT_GRADE'
 
 class PennGrader:
     
+
     def __init__(self, homework_id, student_id):
         if '_' in str(student_id):
             raise Exception("Student ID cannot contain '_'")
@@ -81,6 +82,7 @@ class PennGrader:
     def _serialize(self, obj):
         byte_serialized = dill.dumps(obj, recurse = True)
         return base64.b64encode(byte_serialized).decode("utf-8")
+    
     
     def _deserialize(self, obj):
         byte_decoded = base64.b64decode(obj)

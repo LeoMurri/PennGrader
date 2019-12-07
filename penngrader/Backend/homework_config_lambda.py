@@ -48,6 +48,7 @@ def lambda_handler(event, context):
     except Exception as exception:
         return build_http_response(ERROR, exception)
 
+
 def parse_event(event):
     try:
         body = ast.literal_eval(event['body'])

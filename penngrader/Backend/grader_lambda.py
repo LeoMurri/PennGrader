@@ -19,6 +19,7 @@ GRADEBOOK_TABLE  = 'Gradebook'
 SUCCESS = 200
 ERROR   = 400
 
+
 def lambda_handler(event, context):
     try:
         homework_id, student_id, test_case_id, answer = parse_event(event)
