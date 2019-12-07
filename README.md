@@ -3,13 +3,13 @@ Welcome to the PennGrader!
 
 Here at PennGrader we believe that learning comes from lots of practice...and from making lots of mistakes. 
 
-After many years as a student I found myself very frustrated in the following homework flow: struggle on a homework for weeks, submit something that may or may not be right and then wait a few more weeks for any type of feedback, by which I had forgotten all about the homeowork. After many years as a TA I also found myself very frustrated with the common autograding tools, the hours and hours of manual grading and the onslaught of re-grade requests that came thereafter.
+After many years as a student I found myself very frustrated in the following homework timeline: struggle on a homework assignment for weeks, submit something that may or may not be right and then wait a few more weeks to receive any type of feedback, by which I had forgotten all about the homework. After many years as a TA, I also found myself very frustrated with the common auto-grading tools, the hours and hours of manual grading and the onslaught of re-grade requests that came thereafter.
 
-From these frustrations the PennGrader was born!
+From these frustrations, the PennGrader was born!
 
-The PennGrader was built to allow students to get instant feedback and many opportunities for re-submission, after all programming is about making mistakes and learning from feedback! Moreover, we wanted to allow TAs and Instructors to write homeworks in any way they pleased, without having to worry structuring it for a specific autograder. The examples below are done using Jupyter Notebooks which is the most common use case, but you can use this for a normal Python homework as well. 
+The PennGrader was built to allow students to get instant feedback and many opportunities for re-submission. After all, programming is about making mistakes and learning from feedback! Moreover, we wanted to allow TAs and Instructors to write their homework in any way they pleased, without having to worry about structuring it for a specific auto-grader. The examples below are done using Jupyter Notebooks which is the most common use case, but you can use this for normal Python homework as well. 
 
-Here is what a student sees in his Homework Notebook. All a student has to do is write her solution and run the autograding cell.
+Here is what a student sees in his Homework Notebook. All a student has to do is write her solution and run the auto-grading cell.
 
 ![Sample Question](https://penngrader-wiki.s3.amazonaws.com/sample_question.gif)
 
@@ -24,9 +24,6 @@ As you can see, this test case tests that answer(1,2) == 3 i.e. addition_functio
 To create a homework for your class you will need a course SECRET_KEY, we will have a website to register soon, but for now just email me at murri@seas.upenn.edu and I will get you one.
 
 Then download the Teacher_Backend_Template.ipynb(#TO UPLOAD#) and the Student_Homework_Notebook_Template.ipynb(#TO UPLOAD#). Make sure to watch THIS(#TODO#) on how to write your first PennGrader homework.
-
-## Create a Homework for your class!
-Follow the instructions below to create a homework for your class.
 
 ## Behind the scenes...
 In the following section I will go into details about the system implementation. Below is the system design overview we will go into.
