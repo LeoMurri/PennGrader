@@ -19,6 +19,7 @@ Ok, ok, you might be saying to your self "That looks easy enough, but what about
 
 ![Sample Question](https://penngrader-wiki.s3.amazonaws.com/sample_test.gif)
 
+As you can see, this test case tests that answer(1,2) == 3 i.e. addition_function(1,2) == 3. The test function **must** then return a integer tuple (student_score, max_score), which is what will be displayed on the student side. As you can see this type of test function gives the Instructor complete flexibility on what to test. You might be saying, sure, sure that's great... but what if I am not testing a function...well that's the point, the answer that gets passed to the test case could be anything... a function, a class, a dataframe, a list, a picture... anything!!
 
 
 
