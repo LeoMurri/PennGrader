@@ -38,15 +38,20 @@ In the following section I will go into details about the system implementation.
 
 ### Clients
 #### Student's Client: PennGrader
-TODO
+coming soon...
 #### Teacher's Client: PennGraderBackend
-TODO
+coming soon...
 
 ### Lambdas
-TODO
-### DynamoDB Tables
-TODO
-### S3 Buckets
-TODO
+#### Grader
+coming soon...
+#### Grades
+coming soon...
+#### HomeworkConfig
+coming soon...
+
+### DynamoDB Tables & S3 Buckets
+coming soon...
+
 
 
