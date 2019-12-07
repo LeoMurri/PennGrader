@@ -17,7 +17,7 @@ Through the magic of AWS Lambdas the studen't answer (in this case the addition_
 
 Ok, ok, you might be saying to your self "That looks easy enough, but what about us TAs, we want something that simple too!". Well, look no further. The TAs/Instructors expereince is just as seemless. All TAs will share a _TeacherBackend_ notebook, which contains all the test case functions. The logic how testing is done is simple, whatever Python object gets passed through the _answer_ field in the _grade_ function (see above) will be the input to the a test case function (see below). In the above case a function object is getting passed as the answer to a test case named "test_case_1". Thus, the TAs will need to write a "test_case_1(answer)" test case as follows:
 
-![Sample Question](https://penngrader-wiki.s3.amazonaws.com/sample_test_case.gif)
+![Sample Question](https://penngrader-wiki.s3.amazonaws.com/sample_test.gif)
 
 
 
