@@ -25,15 +25,12 @@ To create a homework for your class you will need a course `SECRET_KEY`, we will
 
 
 
-<dl>
-  <input type="text" id="name" name="name"/>
-
-  <dt>Definition list</dt>
-  <dd>Is something people use sometimes.</dd>
-
-  <dt>Markdown in HTML</dt>
-  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
-</dl>
+<form>
+  First name:<br>
+  <input type="text" name="firstname"><br>
+  Last name:<br>
+  <input type="text" name="lastname">
+</form>
 
 Then download:
 
