@@ -22,8 +22,17 @@ Ok, ok, you might be saying to yourself: "That looks easy enough, but what about
 As you can see, this function tests that `answer(1,2) == 3` i.e. `addition_function(1,2) == 3`. The test must then return a integer tuple `(student_score, max_score)`, which is what will be displayed to the student. As you can see this type of test function gives the Instructor complete flexibility on what to test and how much partial credit to give. And remember that the answer that gets passed to the test case could be anything... a function, a class, a dataframe, a list, a picture... anything! The PennGrader automatically serializes it and all its dependencies and ships to AWS for grading.
 
 To create a homework for your class you will need a course `SECRET_KEY`, we will have a website to register soon, but for now just email me at murri@seas.upenn.edu and I will get you one.
+
+
 <input type="text" id="name" name="name"/>
 
+<dl>
+  <dt>Definition list</dt>
+  <dd>Is something people use sometimes.</dd>
+
+  <dt>Markdown in HTML</dt>
+  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
+</dl>
 
 Then download:
 
