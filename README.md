@@ -36,4 +36,17 @@ In the following section I will go into details about the system implementation.
 
 ![Architecture Design](https://penngrader-wiki.s3.amazonaws.com/design.png)
 
-coming soon...
+### Clients
+#### Student's Client: PennGrader
+TODO
+#### Teacher's Client: PennGraderBackend
+TODO
+
+### Lambdas
+TODO
+### DynamoDB Tables
+TODO
+### S3 Buckets
+TODO
+
+
