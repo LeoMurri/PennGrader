@@ -3,16 +3,17 @@ Welcome to the PennGrader!
 
 Here at PennGrader we believe that learning comes from lots of practice...and from making lots of mistakes. 
 
-After many years as a student I found myself very frustrated in the following homework flow: struggle on a homework for weeks, submit something that may or may not be right and then wait weeks for any type of feedback, by which I had forgotten all about the homeowork. After many years as a TA I also found myself very frustrated with the common autograding tools, the hours and hours of manual grading and the onslaught of re-grade requests that came thereafter.
+After many years as a student I found myself very frustrated in the following homework flow: struggle on a homework for weeks, submit something that may or may not be right and then wait a few more weeks for any type of feedback, by which I had forgotten all about the homeowork. After many years as a TA I also found myself very frustrated with the common autograding tools, the hours and hours of manual grading and the onslaught of re-grade requests that came thereafter.
 
 From these frustrations the PennGrader was born!
 
-The PennGrader was built to allow students to get instant feedback and many opportunities for re-submission. Moreover, we wanted to allow TAs and Instructors to write homeworks in any way they pleased, without having to worry structuing it for a specific autograder. The examples below are done using Jupyter Notebooks which is the most common use case, but you can use this for a normal Python homework as well. 
+The PennGrader was built to allow students to get instant feedback and many opportunities for re-submission, after all programming is about making mistakes and learning from feedback! Moreover, we wanted to allow TAs and Instructors to write homeworks in any way they pleased, without having to worry structuring it for a specific autograder. The examples below are done using Jupyter Notebooks which is the most common use case, but you can use this for a normal Python homework as well. 
 
-Here is what a student sees in his Homework Notebook. All a student has to do is write his solution and run the autograding cell.
+Here is what a student sees in his Homework Notebook. All a student has to do is write her solution and run the autograding cell.
 
 ![Sample Question](https://penngrader-wiki.s3.amazonaws.com/sample_question.gif)
 
+Through the magic of AWS Lambdas the studen't answer (in this case the addition_function object) is passed to the backend where it is checked against the teacher defined test cases and a score is returned. If the student does not pass the test case, she can then go back to her code, learn what she did wrong, fix it and re-submit it. (I know what you are thinking, and yes, you can set a maximum number of daily submissions if you want to incentivize students to start early)
 
 
 
