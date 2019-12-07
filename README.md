@@ -11,7 +11,7 @@ The PennGrader was built to allow students to get instant feedback and many oppo
 
 Here is what a student sees in his Homework Notebook. All a student has to do is write his solution and run the autograding cell.
 
-
+![Sample Question](https://penngrader-wiki.s3.amazonaws.com/sample_question.gif)
 
 
 
