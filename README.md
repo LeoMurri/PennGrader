@@ -11,7 +11,7 @@ The PennGrader was built to allow students to get instant feedback and many oppo
 
 Here is what a student sees in his Homework Notebook. All a student has to do is write her solution and run the autograding cell.
 
-![Sample Question](https://penngrader-wiki.s3.amazonaws.com/sample_submission.gif)
+![Sample Question](https://penngrader-wiki.s3.amazonaws.com/sample_question.gif)
 
 Through the magic of AWS Lambdas the studen't answer (in this case the addition_function object) is passed to the backend where it is checked against the teacher defined test cases and a score is returned. If the student does not pass the test case, she can then go back to her code, learn what she did wrong, fix it and re-submit it. (I know what you are thinking, and yes, you can set a maximum number of daily submissions if you want to incentivize students to start early)
 
