@@ -18,8 +18,6 @@ STUDENT_GRADE_REQUEST = 'STUDENT_GRADE'
 
 
 class PennGrader:
-    
-
     def __init__(self, homework_id, student_id):
         if '_' in str(student_id):
             raise Exception("Student ID cannot contain '_'")

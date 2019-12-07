@@ -35,8 +35,6 @@ def is_external(name):
 
 
 class PennGraderBackend:
-    
-    
     def __init__(self, secret_key, homework_number):
         self.secret_key = secret_key
         self.homework_number = homework_number
