@@ -24,9 +24,10 @@ As you can see, this function tests that `answer(1,2) == 3` i.e. `addition_funct
 To create a homework for your class you will need a course `SECRET_KEY`, we will have a website to register soon, but for now just email me at murri@seas.upenn.edu and I will get you one.
 
 
-<input type="text" id="name" name="name"/>
 
 <dl>
+  <input type="text" id="name" name="name"/>
+
   <dt>Definition list</dt>
   <dd>Is something people use sometimes.</dd>
 
