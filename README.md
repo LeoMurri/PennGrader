@@ -58,6 +58,7 @@ _Classes_ contains information about all courses currently registered for the Pe
 The _Classes_ tables contains the following schema:
 
 `secret_key` : Unique UUID used as secret identifier for a course.
+
 `course_id`  : Human readable identifier representing the course number and semester of the class offered i.e. 'CIS545_Spring_2019'. This ID will be the pre-fix of the `homework_id`, which will be used to identify an homework assignemnt together with all the grades and test cases. 
 
 
