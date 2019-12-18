@@ -17,7 +17,7 @@ Through the magic of AWS Lambdas, the student's answer (in this case the `additi
 
 Ok, ok, you might be saying to yourself: "That looks easy enough, but what about us TAs, we want something that simple too!" Well, look no further. The TAs/Instructors' experience is just as seamless. All TAs will share a __Teacher_Backend__ notebook, which contains all the test case functions. The logic of how testing is done is simple: whatever Python object gets passed through the `answer` field in the `grade(...)` function (see above) will be the input to the test case function (see below). In the above example, `addition_function` is passed as the answer to a test case named `"test_case_1"`. Therefore, the TAs will need to write a `test_case_1(answer)` function in the __Teacher_Backend__ notebook, as follows:
 
-![Sample Question](https://penngrader-wiki.s3.amazonaws.com/sample_test.gif)
+![Sample Question](https://penngrader-wiki.s3.amazonaws.com/sample_update.gif)
 
 As you can see, this function tests that `answer(1,2) == 3` i.e. `addition_function(1,2) == 3`. The test must then return a integer tuple `(student_score, max_score)`, which is what will be displayed to the student. As you can see this type of test function gives the Instructor complete flexibility on what to test and how much partial credit to give. Remember that the answer that gets passed to the test case could be anything... a function, a class, a dataframe, a list, a picture... anything! The PennGrader automatically serializes it and all its dependencies and ships to AWS for grading.
 
