@@ -50,8 +50,12 @@ coming soon...
 
 ### DynamoDB Tables & S3 Buckets
 As shown in the above schematic we maintain the majority of the data needed for grading and grade storage on DynamoDB. Below we list the information recorded in each table.
+
 **Classes DynamoDB Tablet**
-_Classes_ contains information about all courses currently registered for the PennGrader. The grading protocol is on a per-class basis. Each class that wants to create a course that uses the PennGrader will receive `SECRET_KEY`, this secret key will be passed in the TeacherBackend client to allow instructors to edit test cases. The _Classes_ tables contains the following schema:
+
+_Classes_ contains information about all courses currently registered for the PennGrader. The grading protocol is on a per-class basis. Each class that wants to create a course that uses the PennGrader will receive `SECRET_KEY`, this secret key will be passed in the TeacherBackend client to allow instructors to edit test cases. 
+
+The _Classes_ tables contains the following schema:
 
 `secret_key` : Unique UUID used as secret identifier for a course.
 `course_id`  : Human readable identifier representing the course number and semester of the class offered i.e. 'CIS545_Spring_2019'. This ID will be the pre-fix of the `homework_id`, which will be used to identify an homework assignemnt together with all the grades and test cases. 
