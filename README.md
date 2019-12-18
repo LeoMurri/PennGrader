@@ -21,9 +21,7 @@ Ok, ok, you might be saying to yourself: "That looks easy enough, but what about
 
 As you can see, this function tests that `addition_function(1,2) == 3`, if correct it add 5 points to the `student_score`. The test must then return a integer tuple `(student_score, max_score)`, which is what will be displayed to the student. As you can see this type of test function gives the Instructor complete flexibility on what to test and how much partial credit to give. Remember that the answer that gets passed to the test case could be anything... a function, a class, a dataframe, a list, a picture... anything! The PennGrader automatically serializes it and all its dependencies and ships to AWS for grading.
 
-To create a homework for your class you will need a course `SECRET_KEY`. If you would like to add 
-
-Next, download the following notebook templates: 
+To create a homework for your class you will need a course `SECRET_KEY`. We will open to the public soon, however for now contact me at leonardo.murri1995@gmail.com if you are intrested in using the PennGrader for your class.
 
 [PennGrader_Homework_Template.ipynb](https://penngrader-wiki.s3.amazonaws.com/PennGrader_Homework_Template.ipynb)
 
