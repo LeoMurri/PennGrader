@@ -51,21 +51,17 @@ coming soon...
 ### DynamoDB Tables & S3 Buckets
 As shown in the above schematic we maintain the majority of the data needed for grading and grade storage on DynamoDB. Below we list the information recorded in each table.
 
-**Classes DynamoDB Tablet**
+**Classes DynamoDB Table**
 
-_Classes_ contains information about all courses currently registered for the PennGrader. The grading protocol is on a per-class basis. Each class that wants to create a course that uses the PennGrader will receive `SECRET_KEY`, this secret key will be passed in the TeacherBackend client to allow instructors to edit test cases. 
-
-The _Classes_ tables contains the following schema:
+_Classes_ contains information about all courses currently registered for the PennGrader. The grading protocol is on a per-class basis. Each class that wants to create a course that uses the PennGrader will receive `SECRET_KEY`, this secret key will be passed in the TeacherBackend client to allow instructors to edit test cases. The tables contains the following schema:
 
 `secret_key` : Unique UUID used as secret identifier for a course.
 
 `course_id`  : Human readable identifier representing the course number and semester of the class offered i.e. 'CIS545_Spring_2019'. This ID will be the pre-fix of the `homework_id`, which will be used to identify an homework assignemnt.
 
-**HomeworksMetadata DynamoDB Tablet**
+**HomeworksMetadata DynamoDB Table**
 
-The _HomeworksMetadata_ is used to maintain updatable information about a specific homework. The information in this table will be editable from the TeacherBackend even after homework release. 
-
-The _HomeworksMetadata_ tables contains the following schema:
+The _HomeworksMetadata_ is used to maintain updatable information about a specific homework. The information in this table will be editable from the TeacherBackend even after homework release. The tables contains the following schema:
 
 `homework_id` : Unique identifier representing a course + homework number pair. _homeowork_id_ is constructed by taking the _course_id_ defined above and appending the homework number of the assigment in question. For example, given the course id defined above (CIS545_Spring_2019), the _homework_id_ for the first homework will be 'CIS545_Spring_2019_HW1'. This homework_id will be passed into the PennGrader Grader class in the student's homework notebook and will be used to correctly find the correct test cases and store the student scores correctly.
 
@@ -73,6 +69,17 @@ The _HomeworksMetadata_ tables contains the following schema:
 
 `max_daily_submissions` : Number representing the total number of submissions allows per test case per day. For example, if this number is set to 5, it means that all students can submit an answer to a specific test case 5 time a day. Resetting at midnight. 
 
-`max_score` : The total number of points this homework is worth. This number should be equal to the sum of all test case weights. _max_score_ is used to show students how many points they have earned out of the total assignment. 
+`max_score` : The total number of points this homework is worth. This number should be equal to the sum of all test case weights. _max_score_ is used to show students how many points they have earned out of the total assignment.
+
+**HomeworksTestCases DynamoDB Table**
+
+The _HomeworksTestCases_ table contains a serialized encoding of the test cases and libraries imports needed to a run a student's answer. 
+
+`homework_id` : Same _homework_id_ from the _HomeworksMetadata_ table.
+
+`test_cases` : This field contains a dill UTF-8 string serialization of the test cases defined in the teacher backend. The teacher backend extract all test case functions from the notebook and creates a dictionary of _name_ -> _function_. This parameter is deserailized when a new grading request is made and the correct test case is extracted and ran. 
+
+`libraries` : Similar to the _test_cases_ field, the libraries is UTF-8 dill serialized list of tuples that contain all libraries and functions imported in the teacher backend notebook and their appropriate shortname. These list is used to import all needed libraries to run a specific test case. 
+
 
 
