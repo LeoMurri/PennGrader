@@ -13,7 +13,7 @@ Here is what a student sees in his Homework Notebook. All a student has to do is
 
 ![Sample Question](https://penngrader-wiki.s3.amazonaws.com/sample_question.gif)
 
-Through the magic of AWS Lambdas, the student's answer (in this case the `addition_function` object) is packaged and shipped to the backend where it is checked against the teacher-defined test case. Finally, a score is returned. All students' scores are saved in the backend and are easily accessible to the instructors. If at first they don't succeed, they can  learn from their mistakes and try again.  (Yes, if you'd like, can set a maximum number of daily submissions to incentivize students to start early). This "grader" function can easily be used from any Jupyter noteboook (even Google Colab), all you have to do is to `pip install penngrader`. See template Colab notebooks below.
+Through the magic of AWS Lambdas, the student's answer (in this case the `addition_function` object) is packaged and shipped to the backend where it is checked against the teacher-defined test case. Finally, a score is returned. All students' scores are saved in the backend and are easily accessible to the instructors. If at first they don't succeed, they can  learn from their mistakes and try again.  (Yes, if you'd like, can set a maximum number of daily submissions to incentivize students to start early). This "grader" function can easily be used from any Jupyter noteboook (even Google Colab), all you have to do is to `pip install penngrader`. See templates below.
 
 Ok, ok, you might be saying to yourself: "That looks easy enough, but what about us TAs, we want something that simple too!" Well, look no further. The TAs/Instructors' experience is just as seamless. All TAs will share a __Teacher_Backend__ notebook, which contains all the test case functions. The logic of how testing is done is simple: whatever Python object gets passed through the `answer` field in the `grade(...)` function (see above) will be the input to the test case function (see below). In the above example, `addition_function` is passed as the answer to a test case named `"test_case_1"`. Therefore, the TAs will need to write a `test_case_1(addition_function)` function in the __Teacher_Backend__ notebook, as follows:
 
@@ -49,7 +49,12 @@ coming soon...
 coming soon...
 
 ### DynamoDB Tables & S3 Buckets
-coming soon...
+As shown in the above schematic we maintain the majority of the data needed for grading and grade storage on DynamoDB. Below we list the information recorded in each table.
+**Classes DynamoDB Tablet**
+_Classes_ contains information about all courses currently registered for the PennGrader. The grading protocol is on a per-class basis. Each class that wants to create a course that uses the PennGrader will receive `SECRET_KEY`, this secret key will be passed in the TeacherBackend client to allow instructors to edit test cases. The _Classes_ tables contains the following schema:
+
+`secret_key` : Unique UUID used as secret identifier for a course.
+`course_id`  : Human readable identifier representing the course number and semester of the class offered i.e. 'CIS545_Spring_2019'. This ID will be the pre-fix of the `homework_id`, which will be used to identify an homework assignemnt together with all the grades and test cases. 
 
 
 
