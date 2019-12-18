@@ -73,7 +73,7 @@ The _HomeworksMetadata_ is used to maintain updatable information about a specif
 
 **HomeworksTestCases DynamoDB Table**
 
-The _HomeworksTestCases_ table contains a serialized encoding of the test cases and libraries imports needed to a run a student's answer. 
+The _HomeworksTestCases_ table contains a serialized encoding of the test cases and libraries imports needed to a run a student's answer. The tables contains the following schema:
 
 `homework_id` : Same _homework_id_ from the _HomeworksMetadata_ table.
 
@@ -81,5 +81,19 @@ The _HomeworksTestCases_ table contains a serialized encoding of the test cases 
 
 `libraries` : Similar to the _test_cases_ field, the libraries is UTF-8 dill serialized list of tuples that contain all libraries and functions imported in the teacher backend notebook and their appropriate shortname. These list is used to import all needed libraries to run a specific test case. 
 
+
+**Gradebook DynamoDB Table**
+
+The _Gradebook_ table contains all grading submissions and student scores. The tables contains the following schema:
+
+`homework_id` : Same _homework_id_ from the _HomeworksMetadata_ table.
+
+`student_submission_id` : String representing a student submission. This string is create by appending the student's PennID to the test case name i.e. '12345678_test_case_1'.
+
+`max_score` : Maxium points that can be earned for this test case
+
+`student_score` : Points earned by the student on this test case. 
+
+Note: Currently only the last submission is recorded, thus the latest student score will overwrite all previous scores.
 
 
