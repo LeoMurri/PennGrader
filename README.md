@@ -25,10 +25,10 @@ To create a homework for your class you will need a course `SECRET_KEY`. If you 
 
 Next, download the following notebook templates: 
 
-![PennGrader_Homework_Template.ipynb](https://penngrader-wiki.s3.amazonaws.com/PennGrader_Homework_Template.ipynb)
+[PennGrader_Homework_Template.ipynb](https://penngrader-wiki.s3.amazonaws.com/PennGrader_Homework_Template.ipynb)
 Teacher_Backend_Template.ipynb
 
-![PennGrader_TeacherBackend.ipynb](https://penngrader-wiki.s3.amazonaws.com/PennGrader_TeacherBackend.ipynb)
+[PennGrader_TeacherBackend.ipynb](https://penngrader-wiki.s3.amazonaws.com/PennGrader_TeacherBackend.ipynb)
 
 Download these two notebooks and launch them via Jupyter. They will show you how to add grading cells in your homework notebook and add write test cases via the teacher backend, as well as view student's grades.
 
