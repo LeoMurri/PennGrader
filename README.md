@@ -59,7 +59,20 @@ The _Classes_ tables contains the following schema:
 
 `secret_key` : Unique UUID used as secret identifier for a course.
 
-`course_id`  : Human readable identifier representing the course number and semester of the class offered i.e. 'CIS545_Spring_2019'. This ID will be the pre-fix of the `homework_id`, which will be used to identify an homework assignemnt together with all the grades and test cases. 
+`course_id`  : Human readable identifier representing the course number and semester of the class offered i.e. 'CIS545_Spring_2019'. This ID will be the pre-fix of the `homework_id`, which will be used to identify an homework assignemnt.
 
+**HomeworksMetadata DynamoDB Tablet**
+
+The _HomeworksMetadata_ is used to maintain updatable information about a specific homework. The information in this table will be editable from the TeacherBackend even after homework release. 
+
+The _HomeworksMetadata_ tables contains the following schema:
+
+`homework_id` : Unique identifier representing a course + homework number pair. _homeowork_id_ is constructed by taking the _course_id_ defined above and appending the homework number of the assigment in question. For example, given the course id defined above (CIS545_Spring_2019), the _homework_id_ for the first homework will be 'CIS545_Spring_2019_HW1'. This homework_id will be passed into the PennGrader Grader class in the student's homework notebook and will be used to correctly find the correct test cases and store the student scores correctly.
+
+`deadline` : String representing the deadline of the homework in local time i.e. 2019-12-05 11:59 PM (format: YYYY-MM-DD HH:MM A)
+
+`max_daily_submissions` : Number representing the total number of submissions allows per test case per day. For example, if this number is set to 5, it means that all students can submit an answer to a specific test case 5 time a day. Resetting at midnight. 
+
+`max_score` : The total number of points this homework is worth. This number should be equal to the sum of all test case weights. _max_score_ is used to show students how many points they have earned out of the total assignment. 
 
 
