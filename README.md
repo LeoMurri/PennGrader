@@ -35,7 +35,8 @@ In the following section I will go into details about the system implementation.
 ![Architecture Design](https://penngrader-wiki.s3.amazonaws.com/design.png)
 
 ### Clients
-The grading flow of the PennGrader is as follows: there are two pip installable clients, one for students and one for instructors. You can install these two client by running `pip install penngrader` in your favorite terminal. 
+The grading flow of the PennGrader is as follows: there are two pip installable clients, one for students and one for instructors. You can install these two client by running `pip install penngrader` in your favorite terminal.  When creating a new homework download the [Homework_Template.ipynb](https://penngrader-wiki.s3.amazonaws.com/PennGrader_Homework_Template.ipynb) and the [TeacherBackend.ipynb](https://penngrader-wiki.s3.amazonaws.com/PennGrader_TeacherBackend.ipynb) notebooks and follow the instructions. More details are presented below.
+
 #### Student's Client: PennGrader
 
 The student's client will be embedded into the release notebook version of the hoemework. Its main purpose will be to interface the student's homework with the AWS backend. This client is represented by the `PennGrader` class which needs to be initalized by the instructor when creating the writing the homework as follows:
@@ -81,6 +82,13 @@ backend.update_metadata(DEADLINE, TOTAL_SCORE, MAX_DAILY_TEST_CASE_SUBMISSIONS)
 
 `MAX_DAILY_TEST_CASE_SUBMISSIONS` represents the number of allows submissions per test case per day.
 
+Writing test cases is also just a simple. In a Jupyter Notebook (see Teacher Backend template above), you just need to write test case functions as mentioned above. Each gradable question will be identified by a _test_case_id_ which is the name of the test case function. After writing all the test cases you need, simply run the following code in a cell and the PennGraderBackend class will automatically extract all user defined functions in the current notebook and upload them to AWS.
+
+```
+backend.update_test_cases()
+```
+
+A success message will print once the operation has succeeded. If loading a lot of external libraries this might take a few miunutes.
 
 ### Lambdas
 #### Grader
