@@ -47,14 +47,21 @@ The _Grader_ lambda gets triggered from an API Gateway URL from the student's Pe
 
 `{'homework_id' : ______, 'student_id' : ________, 'test_case_id' : ________, 'answer' : _______ }`
 
-The lambda will proceed by downloading the correst test_
-
-
+The lambda will proceed by downloading the correst serialized _test_case_'s and _libraries_ from the _HomeworksTestCases_ DyanmoDB table. It will the deserialize these objects and extract the correct test case given the _test_case_id_ and import the correct libraries used by given test case. If the submission is valid the student score will be recorded in the backend. 
 
 #### Grades
-coming soon...
+
+The grades lamabda interfaces the TeacherBackend and student notebook with the Gradebook. Using this API Gateway trigged lambda the TeacherBackend client can request all grades for a given homework. The payload body used to trigger this lambda will need to include 
+
+`{'homework_id' : ______, 'secret_key' : ________, 'request_type' : ________ }`
+
+Where the _secret_key_ parameter is optional and will allow a properly initialized TeacherBackend to download all grades for the selected homework. Student will also be able to view individual score.
+
 #### HomeworkConfig
-coming soon...
+
+The _HomeworkConfig_  lambda interfaces the TeacherBackend with the _HomeworkTestCases_ and _HomeworkMetadata_ DynamoDB Tables (see below for table schema). This lambda can be triggered in two ways:
+
+1) 
 
 ### DynamoDB Tables & S3 Buckets
 As shown in the above schematic we maintain the majority of the data needed for grading and grade storage on DynamoDB. Below we list the information recorded in each table.
