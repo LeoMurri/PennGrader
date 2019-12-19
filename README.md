@@ -42,7 +42,11 @@ coming soon...
 
 ### Lambdas
 #### Grader
-coming soon...
+
+The _Grader_ lambda gets triggered from an API Gateway URL from the student's PennGrader client. The student's client as defined above to serialized the answer make a POST request to the lambda with the following body parameters: 
+`{'homework_id' : ______, 'student_id' : ________, 'test_case_id' : ________, 'answer' : _______ }`
+
+
 #### Grades
 coming soon...
 #### HomeworkConfig
