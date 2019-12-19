@@ -35,7 +35,7 @@ In the following section, I will go into detail about the system implementation.
 ![Architecture Design](https://penngrader-wiki.s3.amazonaws.com/design.png)
 
 ### Clients
-The grading flow of the PennGrader is as follows: there are two pip installable clients, one for students and one for instructors. You can install these two clients by running `pip install penngrader` in your favorite terminal.  When creating a new homework download the [Homework_Template.ipynb](https://penngrader-wiki.s3.amazonaws.com/PennGrader_Homework_Template.ipynb) and the [TeacherBackend.ipynb](https://penngrader-wiki.s3.amazonaws.com/PennGrader_TeacherBackend.ipynb) notebooks and follow the instructions. More details are presented below.
+There are two pip installable clients, one for students and one for instructors. You can install these two clients by running `pip install penngrader` in your favorite terminal.  When creating a new homework download the [Homework_Template.ipynb](https://penngrader-wiki.s3.amazonaws.com/PennGrader_Homework_Template.ipynb) and the [TeacherBackend.ipynb](https://penngrader-wiki.s3.amazonaws.com/PennGrader_TeacherBackend.ipynb) notebooks and follow the instructions. More details are presented below.
 
 #### Student's Client: PennGrader
 
