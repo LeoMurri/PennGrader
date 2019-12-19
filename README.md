@@ -43,8 +43,12 @@ coming soon...
 ### Lambdas
 #### Grader
 
-The _Grader_ lambda gets triggered from an API Gateway URL from the student's PennGrader client. The student's client as defined above to serialized the answer make a POST request to the lambda with the following body parameters: 
+The _Grader_ lambda gets triggered from an API Gateway URL from the student's PennGrader client. The student's client as defined above will serialize its answer and make a POST request to the lambda with the following body parameters: 
+
 `{'homework_id' : ______, 'student_id' : ________, 'test_case_id' : ________, 'answer' : _______ }`
+
+The lambda will proceed by downloading the correst test_
+
 
 
 #### Grades
