@@ -37,13 +37,20 @@ In the following section I will go into details about the system implementation.
 ### Clients
 The grading flow of the PennGrader is as follows: there are two pip installable clients, one for students and one for instructors. You can install these two client by running `pip install penngrader` in your favorite terminal. 
 #### Student's Client: PennGrader
-The student's client will be embedded into the release notebook version of the hoemwork. Its main purpose will be to interface the student's homework with the AWS backend. This client is represented by the `PennGrader` class which needs to be initalized as follows:
+The student's client will be embedded into the release notebook version of the hoemework. Its main purpose will be to interface the student's homework with the AWS backend. This client is represented by the `PennGrader` class which needs to be initalized by the instructor when creating the writing the homework as follows:
 
 ```
 import penngrader.grader
 grader = PennGrader(homework_id = HOMEWORK_ID, student_id = STUDENT_ID)
 ```
 
+Where HOMEWORK_ID is the string obtained when creating a new homework via the TeacherBackend, see below. STUDENT_ID is the student defined variable representing their 8-digit PennID. The student will need to run this cell at the beginning of the notebook to initialize the grader. After every question, the Instructor will also need to write a grading cell which the student will run to invoke the grader. A grading cell looks as follows:
+
+```
+grader.grade(test_case_id = TEST_CASE_NAME, answer = ANSWER) 
+```
+
+Where TEST_CASE_NAME is the string name of the test case function that will grader the given question. ANSWER is the object that needs to be graded. For example, you might have a question where you instruct the student to create a dataframe called `test_df`, thus you will need to write `test_df` as the input answer parameter of the grader function. That way, when the student run this cell the grader will automatically find the test function name TEST_CASE_NAME and then ship it the `test_df` python variable the student defined. The cool thing about the PennGrader is that you can pass pretty much anything as the answer. 
 
 #### Teacher's Client: PennGraderBackend
 coming soon...
