@@ -37,6 +37,7 @@ In the following section I will go into details about the system implementation.
 ### Clients
 The grading flow of the PennGrader is as follows: there are two pip installable clients, one for students and one for instructors. You can install these two client by running `pip install penngrader` in your favorite terminal. 
 #### Student's Client: PennGrader
+
 The student's client will be embedded into the release notebook version of the hoemework. Its main purpose will be to interface the student's homework with the AWS backend. This client is represented by the `PennGrader` class which needs to be initalized by the instructor when creating the writing the homework as follows:
 
 ```
@@ -50,10 +51,36 @@ Where HOMEWORK_ID is the string obtained when creating a new homework via the Te
 grader.grade(test_case_id = TEST_CASE_NAME, answer = ANSWER) 
 ```
 
-Where TEST_CASE_NAME is the string name of the test case function that will grader the given question. ANSWER is the object that needs to be graded. For example, you might have a question where you instruct the student to create a dataframe called `test_df`, thus you will need to write `test_df` as the input answer parameter of the grader function. That way, when the student run this cell the grader will automatically find the test function name TEST_CASE_NAME and then ship it the `test_df` python variable the student defined. The cool thing about the PennGrader is that you can pass pretty much anything as the answer. 
+Where TEST_CASE_NAME is the string name of the test case function that will grader the given question. ANSWER is the object that needs to be graded. For example, you might have a question where you instruct the student to create a dataframe called `test_df`, thus you will need to write `test_df` as the input answer parameter of the grader function. That way, when the student run this cell the grader will automatically find the test function named TEST_CASE_NAME and then ship the `test_df` python variable the student defined. The cool thing about the PennGrader is that you can pass pretty much anything as the answer.
 
 #### Teacher's Client: PennGraderBackend
-coming soon...
+
+The teacher client allows instructors to create and edit the test cases function mentioned earlier, as well as define multiple homework metadata parmeters. As shown in the template notebooks linked above, you first need to initialize the _PennGraderBackend_ for a specific homework as follows:
+
+```
+backend = PennGraderBackend(secret_key = SECRET_KEY, homework_number = HOMEWORK_NUMBER)
+```
+
+The SECRET_KEY is the string variable obtained when creating a course. HOMEWORK_NUMBER identifies which homework number you are planning to write/edit. After running the above cell in a Jupyter Notebook, given a correct SECRET_KEY the cell will print out a HOMEWORK_ID string. This HOMEWORK_ID needs to be copied into the initalization of the PennGrader student client for release. Just the homework id, without the secret key will not allow students to see any of the test cases, so make sure the secret key does not get out. 
+
+After initialization, the  `backend` can be used to 1) update metadata 2) edit/write test cases.
+
+You can edit the following metadata parmaters by runnin the following code:
+
+```
+TOTAL_SCORE = 100
+DEADLINE = '2019-12-05 11:59 PM'
+MAX_DAILY_TEST_CASE_SUBMISSIONS = 100
+
+backend.update_metadata(DEADLINE, TOTAL_SCORE, MAX_DAILY_TEST_CASE_SUBMISSIONS)
+```
+
+`TOTAL_SCORE` represents the total number of points the homework is worth, and should equal the sum of all test cases weights.
+
+`DEADLINE` represents the deadline of the homework, with fromat: _YYYY-MM-DD HH:MM A_.
+
+`MAX_DAILY_TEST_CASE_SUBMISSIONS` represents the number of allows submissions per test case per day.
+
 
 ### Lambdas
 #### Grader
