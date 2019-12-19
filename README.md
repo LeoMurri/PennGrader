@@ -19,7 +19,7 @@ Ok, ok, you might be saying to yourself: "That looks easy enough, but what about
 
 ![Sample Question](https://penngrader-wiki.s3.amazonaws.com/sample_update.gif)
 
-As you can see, this function tests that `addition_function(1,2) == 3`, if correct it add 5 points to the `student_score`. The test must then return a integer tuple `(student_score, max_score)`, which is what will be displayed to the student. As you can see this type of test function gives the Instructor complete flexibility on what to test and how much partial credit to give. Remember that the answer that gets passed to the test case could be anything... a function, a class, a dataframe, a list, a picture... anything! The PennGrader automatically serializes it and all its dependencies and ships to AWS for grading.
+As you can see, this function tests that `addition_function(1,2) == 3`, if correct it adds 5 points to the `student_score`. The test must then return a integer tuple `(student_score, max_score)`, which is what will be displayed to the student. As you can see this type of test function gives the Instructor complete flexibility on what to test and how much partial credit to give. Remember that the answer that gets passed to the test case could be anything... a function, a class, a dataframe, a list, a picture... anything! The PennGrader automatically serializes it and all its dependencies and ships to AWS for grading.
 
 To create a homework for your class you will need a course `SECRET_KEY`. We will open to the public soon, however for now contact me at leonardo.murri1995@gmail.com if you are intrested in using the PennGrader for your class.
 
@@ -27,7 +27,7 @@ To create a homework for your class you will need a course `SECRET_KEY`. We will
 
 [PennGrader_TeacherBackend.ipynb](https://penngrader-wiki.s3.amazonaws.com/PennGrader_TeacherBackend.ipynb)
 
-Download these two notebooks and launch them via Jupyter. They will show you how to add grading cells in your homework notebook and add write test cases via the teacher backend, as well as view student's grades.
+Download these two notebooks and launch them via Jupyter. They will show you how to add grading cells in your homework notebook and add write/update test cases via the teacher backend, as well as view student's grades.
 
 ## Behind the scenes...
 In the following section I will go into details about the system implementation. Below is the system design overview we will go into.
@@ -35,8 +35,16 @@ In the following section I will go into details about the system implementation.
 ![Architecture Design](https://penngrader-wiki.s3.amazonaws.com/design.png)
 
 ### Clients
+The grading flow of the PennGrader is as follows: there are two pip installable clients, one for students and one for instructors. You can install these two client by running `pip install penngrader` in your favorite terminal. 
 #### Student's Client: PennGrader
-coming soon...
+The student's client will be embedded into the release notebook version of the hoemwork. Its main purpose will be to interface the student's homework with the AWS backend. This client is represented by the `PennGrader` class which needs to be initalized as follows:
+
+```
+import penngrader.grader
+grader = PennGrader(homework_id = HOMEWORK_ID, student_id = STUDENT_ID)
+```
+
+
 #### Teacher's Client: PennGraderBackend
 coming soon...
 
