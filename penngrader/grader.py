@@ -6,6 +6,7 @@ import types
 from urllib.error import HTTPError
 import ast
 import types
+import pandas as pd 
 
 # Lambda endpoints
 grader_api_url = 'https://wyv616tp17.execute-api.us-east-1.amazonaws.com/default/Grader'
