@@ -185,14 +185,17 @@ class PennGraderBackend:
         # Get all function imports 
         test_cases = {}
         for shortname, val in list(globals().items()):
-            if is_function(val) and not is_external(val.__module__) and 'penngrader' not in val.__module__:
-                test_cases[shortname] = val  
+            try:
+                if val and is_function(val) and not is_external(val.__module__) and 'penngrader' not in val.__module__:
+                    test_cases[shortname] = val  
+            except:
+                pass
         return test_cases
 
     
     def _serialize(self, obj):
         '''Dill serializes Python object into a UTF-8 string'''
-        byte_serialized = dill.dumps(obj, recurse = True)
+        byte_serialized = dill.dumps(obj, recurse = False)
         return base64.b64encode(byte_serialized).decode("utf-8")
 
     

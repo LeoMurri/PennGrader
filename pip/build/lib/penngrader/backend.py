@@ -35,6 +35,8 @@ def is_external(name):
 
 
 class PennGraderBackend:
+    
+    
     def __init__(self, secret_key, homework_number):
         self.secret_key = secret_key
         self.homework_number = homework_number
@@ -46,7 +48,6 @@ class PennGraderBackend:
         else:
             print(self.homework_id)
             
-
     def update_metadata(self, deadline, total_score, max_daily_submissions):
         request = { 
             'homework_number' : self.homework_number, 
@@ -90,7 +91,6 @@ class PennGraderBackend:
                 return pd.DataFrame(grades), deadline
             else:
                 return pd.DataFrame(grades)
-    
     
     def get_grades(self):
         grades_df, deadline = self.get_raw_grades(with_deadline = True)
@@ -185,14 +185,17 @@ class PennGraderBackend:
         # Get all function imports 
         test_cases = {}
         for shortname, val in list(globals().items()):
-            if is_function(val) and not is_external(val.__module__) and 'penngrader' not in val.__module__:
-                test_cases[shortname] = val  
+            try:
+                if val and is_function(val) and not is_external(val.__module__) and 'penngrader' not in val.__module__:
+                    test_cases[shortname] = val  
+            except:
+                pass
         return test_cases
 
     
     def _serialize(self, obj):
         '''Dill serializes Python object into a UTF-8 string'''
-        byte_serialized = dill.dumps(obj, recurse = True)
+        byte_serialized = dill.dumps(obj, recurse = False)
         return base64.b64encode(byte_serialized).decode("utf-8")
 
     
