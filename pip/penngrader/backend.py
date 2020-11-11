@@ -15,6 +15,7 @@ HOMEWORK_ID_REQUEST     = 'GET_HOMEWORK_ID'
 UPDATE_METADATA_REQUEST = 'UPDATE_METADATA'
 UPDATE_TESTS_REQUEST    = 'UPDATE_TESTS'
 GRADES_REQUEST          = 'ALL_STUDENTS_GRADES'
+ADD_NEW_COURSE_REQUEST  = 'ADD_NEW_COURSE'
 
 # Lambda endpoints
 config_api_url = 'https://uhbuar7r8e.execute-api.us-east-1.amazonaws.com/default/HomeworkConfig'
@@ -23,21 +24,32 @@ grades_api_url = 'https://1rwoprdby6.execute-api.us-east-1.amazonaws.com/default
 grades_api_key = 'lY1O5NDRML9zEyRvWhf0c1GeEYFe3BE710Olbh3R'
 
 def is_function(val):
+    """ Simple helper to confirm an arg is a function
+    """
     return type(val) == types.FunctionType
 
 
 def is_module(val):
+    """ Simple helper to confirm an arg is a module
+    """
     return type(val) == types.ModuleType
 
 
 def is_external(name):
+    """ Simple helper to determine whether the module is already installed
+    """
     return name not in ['__builtin__','__builtins__', 'penngrader','_sh', '__main__'] and 'penngrader' not in name
 
 
 class PennGraderBackend:
+    """ The backened is responsible for initializing test cases, homeworks, courses, etc. This manages those things
+    that a student using the tool would not have access to. Only those with the secret key can manage the backend
+    """
     
     
     def __init__(self, secret_key, homework_number):
+        """ Initialization function to start up the backend via grades_lambda for a particular homework in a course
+        """
         self.secret_key = secret_key
         self.homework_number = homework_number
         self.homework_id = self._get_homework_id()
@@ -47,8 +59,24 @@ class PennGraderBackend:
             print(response)
         else:
             print(self.homework_id)
+
+
+    def create_new_course(self, valid_current_secret, new_secret, course_id):
+        request = {
+            'secret_key': valid_current_secret,
+            'request_type': ADD_NEW_COURSE_REQUEST,
+            'payload': self._serialize({
+                'course_id': course_id,
+                'secret_key': new_secret
+            })
+        }
+        print(self._send_request(request, config_api_url, config_api_key))
+
             
     def update_metadata(self, deadline, total_score, max_daily_submissions):
+        """ Updates the metadata of an assignment, including deadline, total score,
+        and maximum number of daily submissions, if desired
+        """
         request = { 
             'homework_number' : self.homework_number, 
             'secret_key' : self.secret_key, 
@@ -63,6 +91,9 @@ class PennGraderBackend:
     
             
     def update_test_cases(self):
+        """ Updates the test cases in an assignment broadly across the entire
+        assignment
+        """
         request = { 
             'homework_number' : self.homework_number, 
             'secret_key' : self.secret_key, 
@@ -76,6 +107,9 @@ class PennGraderBackend:
     
     
     def get_raw_grades(self, with_deadline = False):
+        """ Retrieve all of the grades for all students that have attempted a given homework. Returns
+        a dataframe containing the results. Helper function leveraged by the get_grades func
+        """
         request = { 
             'homework_id' : self.homework_id, 
             'secret_key' : self.secret_key, 
@@ -93,6 +127,8 @@ class PennGraderBackend:
                 return pd.DataFrame(grades)
     
     def get_grades(self):
+        """ Retrieves grade details for the current assignment
+        """
         grades_df, deadline = self.get_raw_grades(with_deadline = True)
         if grades_df is not None:
             
@@ -131,6 +167,8 @@ class PennGraderBackend:
     
     
     def _get_homework_id(self):
+        """ Hits the homework_config_lambda for the homework id: ex. CIS545_Spring_2019_HW1
+        """
         request = { 
             'homework_number' : self.homework_number,
             'secret_key' : self.secret_key,
@@ -139,8 +177,10 @@ class PennGraderBackend:
         }
         return self._send_request(request, config_api_url, config_api_key)
 
-        
+
     def _send_request(self, request, api_url, api_key):
+        """ Function to send all requests, regardless of type, to their appropriate lambda
+        """
         params = json.dumps(request).encode('utf-8')
         headers = {'content-type': 'application/json', 'x-api-key': api_key}
         request = urllib.request.Request(api_url, data=params, headers=headers)
@@ -148,10 +188,12 @@ class PennGraderBackend:
             response = urllib.request.urlopen(request)
             return '{}'.format(response.read().decode('utf-8'))
         except HTTPError as error:
-            return 'Error: {}'.format(error.read().decode("utf-8")) 
+            return 'Error: {}'.format(error.read().decode("utf-8"))
+
         
-    
     def _get_imported_libraries(self):
+        """ Returns a list of all packages, imports, functions currently imported
+        """
         # Get all externally imported base packages
         packages = set() # (package, shortname)
         for shortname, val in list(globals().items()):
@@ -180,8 +222,10 @@ class PennGraderBackend:
             'functions' : list(functions)
         }
 
-    
+
     def _get_test_cases(self):
+        """ Gets all test cases that are currently on file
+        """
         # Get all function imports 
         test_cases = {}
         for shortname, val in list(globals().items()):
@@ -192,13 +236,16 @@ class PennGraderBackend:
                 pass
         return test_cases
 
-    
+
     def _serialize(self, obj):
-        '''Dill serializes Python object into a UTF-8 string'''
+        """ Dill serializes Python object into a UTF-8 string
+        """
         byte_serialized = dill.dumps(obj, recurse = False)
         return base64.b64encode(byte_serialized).decode("utf-8")
 
-    
+
     def _deserialize(self, obj):
+        """ Dill deserializes UTF-8 string into python object
+        """
         byte_decoded = base64.b64decode(obj)
         return dill.loads(byte_decoded)

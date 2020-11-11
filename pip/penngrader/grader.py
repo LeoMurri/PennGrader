@@ -14,8 +14,13 @@ grader_api_key = 'Kd32fl3g3p917iM0zwjiO23Bitj4PO9ga4LektOa'
 STUDENT_GRADE_REQUEST = 'STUDENT_GRADE'
 
 class PennGrader:
+    """ The grader is responsible for the actual testing. This is what the student will use
+    to test their code
+    """
     
     def __init__(self, homework_id, student_id):
+        """ Initialization function to start up the grader instance
+        """
         if '_' in str(student_id):
             raise Exception("Student ID cannot contain '_'")
         self.homework_id = homework_id
@@ -25,6 +30,8 @@ class PennGrader:
 
         
     def grade(self, test_case_id, answer):
+        """ This function will hit the grader_lambda to test a student's function
+        """
         request = { 
             'homework_id' : self.homework_id, 
             'student_id' : self.student_id, 
@@ -35,6 +42,8 @@ class PennGrader:
         print(response)
 
     def _send_request(self, request, api_url, api_key):
+        """ Function to send requests, regardless of type
+        """
         params = json.dumps(request).encode('utf-8')
         headers = {'content-type': 'application/json', 'x-api-key': api_key}
         request = urllib.request.Request(api_url, data=params, headers=headers)
@@ -45,5 +54,7 @@ class PennGrader:
             return 'Error: {}'.format(error.read().decode("utf-8")) 
         
     def _serialize(self, obj):
+        """ Encodes an object to UTF-8
+        """
         byte_serialized = dill.dumps(obj, recurse = True)
         return base64.b64encode(byte_serialized).decode("utf-8")
